@@ -166,7 +166,7 @@ public class Migration extends CordovaPlugin {
         Intent intent = activity.getIntent();
         activity.finish();
         //activity.recreate();
-        startActivity(intent);
+        activity.startActivity(intent);
     }
 
 
