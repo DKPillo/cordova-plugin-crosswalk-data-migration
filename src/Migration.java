@@ -5,6 +5,7 @@ package cordova.plugins.crosswalk;
  */
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.Context;
 import android.os.Build;
 import android.util.Log;
@@ -162,7 +163,10 @@ public class Migration extends CordovaPlugin {
 
     private void restartCordova(){
         Log.d(TAG, "restarting Cordova activity");
-        activity.recreate();
+        Intent intent = activity.getIntent();
+        activity.finish();
+        //activity.recreate();
+        startActivity(intent);
     }
 
 
