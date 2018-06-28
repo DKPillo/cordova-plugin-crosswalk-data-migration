@@ -48,6 +48,7 @@ public class Migration extends CordovaPlugin {
     private Context context;
 
     private boolean isModernAndroid;
+    private boolean migrationDone = false;
     private File appRoot;
     private File XWalkRoot;
     private File webviewRoot;
@@ -66,8 +67,12 @@ public class Migration extends CordovaPlugin {
             run();
         }
 
-        Log.d(TAG, "normal startup");
-        super.initialize(cordova, webView);
+        if (!migrationDone) {
+            Log.d(TAG, "normal startup");
+            super.initialize(cordova, webView);
+        } else {
+            Log.d(TAG, "no super.initialize(cordova, webView) after migration");
+        }
     }
 
     private void run(){
@@ -120,6 +125,7 @@ public class Migration extends CordovaPlugin {
         }
 
         if(hasMigratedData){
+            migrationDone = true;
             deleteRecursive(XWalkRoot);
             restartCordova();
         }
