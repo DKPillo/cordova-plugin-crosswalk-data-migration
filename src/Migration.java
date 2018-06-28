@@ -66,6 +66,7 @@ public class Migration extends CordovaPlugin {
             run();
         }
 
+        Log.d(TAG, "normal startup");
         super.initialize(cordova, webView);
     }
 
